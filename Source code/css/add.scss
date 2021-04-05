@@ -1,7 +1,7 @@
-$blue: #0087FD;
-$grey: #242424;
-$shadow: 0 0 5px #000000;
-$white:#F7F7F7;
+
+@import 'ext';
+@import 'nav';
+@import 'menu';
 
 @font-face {
     font-family: 'Raleway';
@@ -9,128 +9,34 @@ $white:#F7F7F7;
     url('../fonts/Raleway-Bold.ttf') format('truetype');
   }
 
-*{
-    margin:0;
-    padding:0;
-    font-family: 'Raleway',sans-serif;
-}
-
 nav{
-        padding: 12px 20px;
-        background-color: #fff;
+box-shadow: 2px -2px 20px 0px #ababab;
+opacity: initial;
+position: fixed;
+    right: 0;
+    left: 0;
+
+    .user{
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        box-shadow: 2px -2px 20px 0px #ababab;
-        position: fixed;
-        right: 0;
-        left: 0;
-        .navleft{
-                        display:flex;
-            align-items: center;
-            img{
-                width: 160px;
+        font-size: 18px;
+        .avatar{
+            width: 42px;
+            height: auto;
+            margin-right: 10px;
+        }
+        p{
+            margin-right: 15px;
+        }
+            .button{
+                img{
+                width: 20px;
                 height: auto;
             }
-            .line{
-                border-left: 1px solid $grey;
-                margin-left:20px;
-                height: 50px;
             }
-            .description{
-                width: 200px;
-                line-height: 25px;
-                font-size: 18px;
-                margin-left: 20px;
-            }
-        }
-      
-        .navright{
-            display:flex;
-            align-items: center;
-            #user{
-                display: flex;
-                margin-left: 50px;
-                align-items: center;
-                font-size: 18px;
-                .avatar{
-                    width: 42px;
-                    height: auto;
-                    margin-right: 10px;
-                }
-
-                    button{
-                        background: #0087FD;
-                        border: none;
-                        border-radius: 6px;
-                        height: 42px;
-                        padding: 0 20px;
-                        display: flex;
-                        align-items: center;
-                        color: #fff;
-                        margin-left: 45px;
-                        font-size: 16px;
-                        img{
-                        width: 20px;
-                        height: auto;
-                        &:hover{
-                            background: #0087fde0;
-                        }
-                    }
-                    }
-            }
-            ul{
-                list-style-type: none;
-                display:flex;
-                justify-content: space-between;
-                a{
-                    color: $grey;
-                    text-decoration: none;
-                    font-weight: bold;
-                    font-size: 18px;
-                    &:hover{
-                        color:$blue;
-                    }
-                }
-                .link1,.link2{
-                    margin-left: 30px;
-                }
-            }
-        }
-    
     }
-
-.menu{
-    width:200px;
-    background:$blue;
-    height:100vh;
-    position: fixed;
-    .menucontainer{
-        margin-top: 100px;
-        .menuitem{
-            padding: 13px 15px;
-            display: flex;
-            color:$white;
-            font-weight: bold;
-            font-size: 18px;
-            display: flex;
-             align-items: center;
-             text-decoration: none;
-            img{
-                width: 30px;
-                height: auto;
-                margin-right: 10px;
-            }
-        }
-        .opa{
-            background: rgba(0,0,0,0.35);
-        }
-    }
-
 }
 
-.content{
-    display:flex;
     .pusher{
         width:225px;
     }
@@ -138,7 +44,7 @@ nav{
         margin-top: 100px;
         display: flex;
         flex: 1;
-        margin: 100px 0 0 225px;
+        margin: 70px 0 0 225px;
         .form{
             display: flex;
             flex-wrap: wrap;
@@ -175,30 +81,19 @@ nav{
                 width: 114px;
                 margin: 16px 16px 0 0;
             }
-            .third{
-                width: 32.4%;
-                border-radius: 8px;
-            }
             .file{
                 margin-top:16px;
             }
             .submit{
                 background:$blue;
                 color:$white;
+                font-weight: 400;
+                font-size: 16px;
+                height:40px;
             }
     }
-    // .showmore{
-    //     background:$blue;
-    //     width: 100%;
-    //     height: 32px;
-    //     color:$white;
-    //     border-radius: 8px 0 0 8px;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    // }
 }
-}
+
 body{
     display: flex;
     flex-direction: column;

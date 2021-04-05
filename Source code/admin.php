@@ -1,22 +1,12 @@
 <?php
+    session_start();
 
-session_start();
-
-if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") {
-
-    if(!$_SESSION["roleName"] == "Administrator"){
+    if(isset($_COOKIE['stay']) && $_SESSION["roleName"] == "Administrator") {
+        
+    } else{
         header("location:index.php");
     }
-
-    include_once "logout.php";
-
-} else{
-    header("location:index.php");
-}
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,30 +18,7 @@ if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") {
 </head>
 <body>
     <?php include_once "menu.php" ?>
-    <nav>
-        <div class="navleft">
-            <img src="images/youcode_logo.png" alt="logo">
-            <span class="line"></span>
-            <span class="description">SYSTÈME DE GESTION DES RESTAURANTS</span>
-        </div>
-        <div class="navright">
-            <ul>
-                <li><a href="index.php">Accueil</a></li>              
-                <li><a  href="/">Catégories</a></li>
-                <li><a href="/">Contact</a></li>
-            </ul>
-            <div id="user">
-                <img class="avatar" src="<?php echo $_SESSION["avatar"] ?>" alt="">
-                <p><?php echo "{$_SESSION["firstName"]} {$_SESSION["lastName"]}" ?></p>
-                <form class="logout" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-                    <button type="submit" name="logout" value="logout">
-                         Se deconnecter
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div class="content">
+    <?php include_once "nav_dashboard.php" ?>
         <div class="realcontents">
             <form method="post" action="add.php">
             <button class="add" name="todo" value="add">
@@ -62,17 +29,6 @@ if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") {
             <div id="realcontent"></div>
             <div id="showmore">Affichier plus de produits</div>
         </div>
-    </div>
-    <script src="js/admin.js"></script>
+    <script src="js/products.js"></script>
 </body>
 </html>
-
-<?php
-
-// mysqli_free_result($showproducts);
-
-// mysqli_close($database);
-
-?>
-
-

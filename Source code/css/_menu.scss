@@ -1,0 +1,28 @@
+.menu{
+    width:200px;
+    background:$blue;
+    height:100vh;
+    position: fixed;
+    .menucontainer{
+        margin-top: 100px;
+        .menuitem{
+            padding: 13px 15px;
+            text-decoration: none;
+            display: flex;
+            color:$white;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+             align-items: center;
+            img{
+                width: 30px;
+                height: auto;
+                margin-right: 15px;
+            }
+        }
+        .opa{
+            background: rgba(0,0,0,0.35);
+        }
+    }
+
+}

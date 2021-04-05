@@ -1,7 +1,3 @@
-@font-face {
-  font-family: "Raleway";
-  src: url("../fonts/Raleway-Regular.ttf") format("truetype"), url("../fonts/Raleway-Bold.ttf") format("truetype");
-}
 * {
   margin: 0;
   padding: 0;
@@ -9,85 +5,78 @@
 }
 
 nav {
-  padding: 12px 20px;
+  padding: 8px 20px;
   background-color: #fff;
+  opacity: 90%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  box-shadow: 2px -2px 20px 0px #ababab;
-  position: fixed;
-  right: 0;
-  left: 0;
 }
 nav .navleft {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 nav .navleft img {
-  width: 160px;
+  width: 150px;
   height: auto;
 }
 nav .navleft .line {
   border-left: 1px solid #242424;
-  margin-left: 20px;
-  height: 50px;
+  margin: 0 20px;
+  height: 40px;
 }
 nav .navleft .description {
   width: 200px;
-  line-height: 25px;
-  font-size: 18px;
-  margin-left: 20px;
-}
-nav .navright {
-  display: flex;
-  align-items: center;
-}
-nav .navright #user {
-  display: flex;
-  margin-left: 50px;
-  align-items: center;
-  font-size: 18px;
-}
-nav .navright #user .avatar {
-  width: 42px;
-  height: auto;
-  margin-right: 10px;
-}
-nav .navright #user button {
-  background: #0087FD;
-  border: none;
-  border-radius: 6px;
-  height: 42px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  margin-left: 45px;
+  line-height: 22px;
   font-size: 16px;
 }
-nav .navright #user button img {
-  width: 20px;
-  height: auto;
+nav .navmiddle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 }
-nav .navright #user button img:hover {
-  background: #0087fde0;
-}
-nav .navright ul {
+nav .navmiddle ul {
   list-style-type: none;
   display: flex;
+  width: 300px;
   justify-content: space-between;
 }
-nav .navright ul a {
+nav .navmiddle ul li:nth-child(1), nav .navmiddle ul li:nth-child(2) {
+  margin-right: 10px;
+}
+nav .navmiddle ul a {
   color: #242424;
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
 }
-nav .navright ul a:hover {
+nav .navmiddle ul a:hover {
   color: #0087FD;
 }
-nav .navright ul .link1, nav .navright ul .link2 {
-  margin-left: 30px;
+nav .navright {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+nav .navright .button {
+  background: #0087FD;
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+nav .navright .button:hover {
+  background: #0087fde0;
+}
+nav .navright #disconnectbutton {
+  margin-left: 10px;
 }
 
 .menu {
@@ -101,50 +90,77 @@ nav .navright ul .link1, nav .navright ul .link2 {
 }
 .menu .menucontainer .menuitem {
   padding: 13px 15px;
+  text-decoration: none;
   display: flex;
   color: #F7F7F7;
   font-weight: bold;
   font-size: 18px;
   display: flex;
   align-items: center;
-  text-decoration: none;
 }
 .menu .menucontainer .menuitem img {
   width: 30px;
   height: auto;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .menu .menucontainer .opa {
   background: rgba(0, 0, 0, 0.35);
 }
 
-.content {
-  display: flex;
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/Raleway-Regular.ttf") format("truetype"), url("../fonts/Raleway-Bold.ttf") format("truetype");
 }
-.content .pusher {
+nav {
+  box-shadow: 2px -2px 20px 0px #ababab;
+  opacity: initial;
+  position: fixed;
+  right: 0;
+  left: 0;
+}
+nav .user {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+nav .user .avatar {
+  width: 42px;
+  height: auto;
+  margin-right: 10px;
+}
+nav .user p {
+  margin-right: 15px;
+}
+nav .user .button img {
+  width: 20px;
+  height: auto;
+}
+
+.pusher {
   width: 225px;
 }
-.content .realcontent {
+
+.realcontent {
   margin-top: 100px;
   display: flex;
   flex: 1;
-  margin: 100px 0 0 225px;
+  margin: 70px 0 0 225px;
 }
-.content .realcontent .form {
+.realcontent .form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
-.content .realcontent .form .staylogged, .content .realcontent .form label {
+.realcontent .form .staylogged, .realcontent .form label {
   font-size: 13px;
 }
-.content .realcontent .form label {
+.realcontent .form label {
   margin: 16px 0 0 4px;
   display: flex;
   align-items: center;
 }
-.content .realcontent .form .input, .content .realcontent .form textarea {
+.realcontent .form .input, .realcontent .form textarea {
   width: 100%;
   height: 47px;
   margin-top: 16px;
@@ -155,28 +171,27 @@ nav .navright ul .link1, nav .navright ul .link2 {
   font-size: 14px;
   text-indent: 14px;
 }
-.content .realcontent .form .input::placeholder, .content .realcontent .form textarea::placeholder {
+.realcontent .form .input::placeholder, .realcontent .form textarea::placeholder {
   color: #242424;
 }
-.content .realcontent .form textarea {
+.realcontent .form textarea {
   height: 100px;
   padding-top: 10px;
 }
-.content .realcontent .form img {
+.realcontent .form img {
   height: auto;
   width: 114px;
   margin: 16px 16px 0 0;
 }
-.content .realcontent .form .third {
-  width: 32.4%;
-  border-radius: 8px;
-}
-.content .realcontent .form .file {
+.realcontent .form .file {
   margin-top: 16px;
 }
-.content .realcontent .form .submit {
+.realcontent .form .submit {
   background: #0087FD;
   color: #F7F7F7;
+  font-weight: 400;
+  font-size: 16px;
+  height: 40px;
 }
 
 body {

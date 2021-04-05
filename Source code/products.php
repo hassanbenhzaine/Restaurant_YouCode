@@ -1,50 +1,18 @@
 <?php
 
-include_once "config.php";
-
 if(isset($_GET['offset'])){
-            
-    $showproductsSQL = "SELECT x.productName, x.productPrice, x.productImage, y.categoryName, x.productRating 
-    FROM products x INNER JOIN categories y ON x.productCategoryID = y.categoryID LIMIT 3 OFFSET {$_GET['offset']}";
+    session_start();
 
-    $showproductsQuery = mysqli_query($database, $showproductsSQL);
-    
-    if(mysqli_num_rows($showproductsQuery) > 0){
-        while($showproductsResults = mysqli_fetch_assoc($showproductsQuery)){
-            echo '<div class="item">
-            <div class="content">
-                <img src="' .htmlspecialchars($showproductsResults["productImage"]). '" alt="">
-                <div class="description">
-                    <div class="up">
-                        <div class="left">
-                            <h1>' . htmlspecialchars($showproductsResults["productName"]) . '</h1>
-                            <div class="details">
-                                <img src="images/star.svg" alt="">
-                                <div class="category">' .htmlspecialchars($showproductsResults["productRating"]). ' • ' .htmlspecialchars($showproductsResults["categoryName"]). '</div>
-                            </div>
-                        </div>
-                        <div class="right">' .htmlspecialchars($showproductsResults["productPrice"]). ' DH</div>
-                    </div>
-                    <button class="addtocart">Ajouter au panier</button>
-                </div>
-            </div>
-        </div>';
-        }
-    }
-    mysqli_free_result($showproductsQuery);
-}
+    include_once "config.php";
+    $offset = mysqli_real_escape_string($database, $_GET['offset']);
+    $showproductsSQL = "SELECT x.productRating, x.productID, x.productName, x.productDescription, x.productImage, x.productPrice, x.productAddedAt, x.productQty, y.categoryName FROM products x INNER JOIN categories y ON x.productCategoryID = y.categoryID LIMIT 3 OFFSET {$offset}";
+    $showproducts = mysqli_query($database, $showproductsSQL);
 
-session_start();
-if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") {
-if(isset($_GET['offsetadmin']) && $_SESSION["roleName"] == "Administrator"){
-
-    $showproductsSQL = "SELECT x.productID, x.productName, x.productDescription, x.productImage, x.productPrice, x.productAddedAt, x.productQty, y.categoryName FROM products x INNER JOIN categories y ON x.productCategoryID = y.categoryID LIMIT 3 OFFSET {$_GET['offsetadmin']}";
-        $showproducts = mysqli_query($database, $showproductsSQL);
-
-        if(mysqli_num_rows($showproducts) > 0){
-            while($showproductsResult = mysqli_fetch_assoc($showproducts)){
+    if(mysqli_num_rows($showproducts) > 0){
+        while($showproductsResult = mysqli_fetch_assoc($showproducts)){
+            if(basename($_SERVER['HTTP_REFERER']) == "admin.php" && $_SESSION["roleName"] == "Administrator"){
                 echo '<div class="item">
-                    <img src="' .htmlspecialchars($showproductsResult["productImage"]). '" alt="">
+                    <img src="images/products/' .htmlspecialchars($showproductsResult["productImage"]). '" alt="">
                     <div class="itemcontent">
                         <div class="details1">
                         <div class="title">
@@ -88,12 +56,33 @@ if(isset($_GET['offsetadmin']) && $_SESSION["roleName"] == "Administrator"){
                         </div>
                     </div>
                 </div>';
-                }
+            } else{
+                echo '<div class="item">
+                <div class="content">
+                    <img src="images/products/' .htmlspecialchars($showproductsResult["productImage"]). '" alt="">
+                    <div class="description">
+                        <div class="up">
+                            <div class="left">
+                                <h1>' . htmlspecialchars($showproductsResult["productName"]) . '</h1>
+                                <div class="details">
+                                    <img src="images/star.svg" alt="">
+                                    <div class="category">' .htmlspecialchars($showproductsResult["productRating"]). ' • ' .htmlspecialchars($showproductsResult["categoryName"]). '</div>
+                                </div>
+                            </div>
+                            <div class="right">' .htmlspecialchars($showproductsResult["productPrice"]). ' DH</div>
+                        </div>
+                        <button class="addtocart">Ajouter au panier</button>
+                    </div>
+                </div>
+                </div>'; 
+            }
         }
+    }
+    mysqli_free_result($showproducts);
+    mysqli_close($database);
 
+} else{
+    header("location:index.php");
 }
-}
-
-mysqli_close($database);
 
 ?>

@@ -1,8 +1,3 @@
-<?php
-
-include_once "logout.php";
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,22 +5,23 @@ include_once "logout.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youcode Food</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <div id="overlay">
         <div class="window" id="login">
             <img class="closeForm" alt="" src="images/cross-sign.svg">
-            <form class="form form2" action="login.php" method="POST">
-                <input type="email" name="email" class="input" placeholder="Email">
-                <input type="password" name="password" class="input" placeholder="Mot de passe">
-                <label id="staylogged">
-                    <input type="checkbox" name="staylogged" class="staylogged">
-                    Rester connecté
-                </label>
-                <button type="submit" name="submit" class="input submit">
-                    Se connecter
-                </button>
+            <form class="form form2">
+                <input type="email" id="email" class="input" placeholder="Email">
+                <input type="password" id="pass" class="input" placeholder="Mot de passe">
+                <div class="loginextra">
+                    <label id="staylogged">
+                        <input type="checkbox" id="staylogged" name="staylogged" class="staylogged">
+                        Rester connecté
+                    </label>
+                    <p id="error"></p>
+                </div>
+                <button type="button" id="submit" class="input submit">Se connecter</button>
             </form>
             <p>Vous n'avez pas encore de compte? <a id="signuplink">S'inscrire</a></p>
         </div>
@@ -38,39 +34,35 @@ include_once "logout.php";
                 <input type="phone" name="phone" class="input" placeholder="Numéro de téléphone">
                 <input type="password" name="password" class="input half" placeholder="Mot de passe">
                 <input type="password" name="password" class="input half" placeholder="Répéter le mot de passe">
-                <button type="submit" name="submit" class="input submit">S'inscrire</button> 
+                <button type="submit" name="signup" class="input submit">S'inscrire</button> 
             </form>
             <p>Vous avez déjà un compte? <a id="loginlink">Se connecter</a></p>
         </div>
     </div>
     <header>
         <nav>
-            <div class="navleft">
-                <img src="images/youcode_logo.png" alt="logo">
-                <span class="line"></span>
-                <span class="description">SYSTÈME DE GESTION DES RESTAURANTS</span>
-            </div>
-            <div class="navright">
-                <ul>
-                    <li><a href="index.php">Accueil</a></li>              
-                    <li class="link1"><a  href="categories.html">Catégories</a></li>
-                    <li class="link2"><a href="contact.html">Contact</a></li>
-                </ul>
-               <?php if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") { ?>
-                <a href="admin.php" class="button">
-                        Dashboard
-               </a>
-                <form id="disconnectbutton" class="logout" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-                <button class="button" type="submit" name="logout" value="logout">
-                    Se deconnecter
-                </button>
-                </form>
+        <div class="navleft">
+            <img src="images/youcode_logo.png" alt="logo">
+            <span class="line"></span>
+            <span class="description">SYSTÈME DE GESTION<br>DES RESTAURANTS</span>
+        </div>
+        <div class="navmiddle">
+            <ul>
+                <li><a href="index.php">Accueil</a></li>              
+                <li><a href="index.php">Catégories</a></li>
+                <li><a href="index.php">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navright">
+                <?php if (isset($_COOKIE['stay']) && $_COOKIE['stay'] == "1") { ?>
+                    <a href="admin.php" class="button">Dashboard</a>
+                    <form id="disconnectbutton" class="logout" method="post" action="logout.php">
+                        <button class="button" type="submit" name="logout" value="logout">Se deconnecter</button>
+                    </form>
                 <?php } else { ?>
-                    <button class="button" id="loginbutton">
-                        Se connecter
-                    </button>
+                    <button class="button" id="loginbutton">Se connecter</button>
                 <?php } ?>
-            </div>
+        </div>
         </nav>
         <h1>Votre repas avec un seul clic</h1>
     </header>
@@ -79,9 +71,9 @@ include_once "logout.php";
         <div id="realcontent"></div>
         <button id="showmore">Voir plus de produits</button>
     </section>
-    <footer>
-        © Copyright YouCode Food 2021, Tous droits réservés.
-    </footer>
-    <script src="js/app.js"></script>
+    <footer>© Copyright YouCode Food 2021, Tous droits réservés.</footer>
+    <script src="js/animation.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
