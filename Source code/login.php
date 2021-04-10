@@ -22,15 +22,17 @@ if(isset($_POST["email"]) && isset($_POST["pass"])){
             $_SESSION["roleName"] = $loginresult["roleName"];
             $_SESSION["avatar"] = $loginresult["avatar"];
     
-            if(isset($_POST["staylogged"]) && $_POST["staylogged"] == "true"){
-                setcookie("stay","1",time()+3600*24*365,"/","localhost",0,1);
+            if(isset($_POST["staylogged"]) && $_POST["staylogged"] == "on"){
+                setcookie("stay","1",time()+3600*24*365);
             } else{
-                setcookie("stay","1",time()+20,"/","localhost",0,1);
+                setcookie("stay","1",time()+20);
             }
 
         } else{
             echo "Email ou mot de passe incorrect";
         }
+    } else{
+        echo "Email ou mot de passe incorrect";
     }
 
     mysqli_free_result($loginquery);

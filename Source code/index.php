@@ -16,7 +16,7 @@
                 <input type="password" id="pass" class="input" placeholder="Mot de passe">
                 <div class="loginextra">
                     <label id="staylogged">
-                        <input type="checkbox" id="staylogged" name="staylogged" class="staylogged">
+                        <input type="checkbox" id="staylogged1" name="staylogged" class="staylogged">
                         Rester connecté
                     </label>
                     <p id="error"></p>
